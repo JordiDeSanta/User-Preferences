@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
 
+  static final String routeName = 'home';
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
@@ -13,15 +15,19 @@ class HomePage extends StatelessWidget {
 
     return Container(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('User Prefenences'),
-        ),
-        body: Center(
-          child: Container(
-            child: Text('Basic Structure'),
+          appBar: AppBar(
+            title: Text('User Prefenences'),
           ),
-        ),
-      ),
+          body: Column(
+            children: [
+              Text('Secondary Color:'),
+              Divider(),
+              Text('Genre:'),
+              Divider(),
+              Text('Username:'),
+              Divider(),
+            ],
+          )),
     );
   }
 }
