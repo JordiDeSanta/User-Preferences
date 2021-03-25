@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:userprefs/src/widgets/drawer_menu.dart';
+
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key key}) : super(key: key);
 
@@ -15,6 +17,7 @@ class SettingsPage extends StatelessWidget {
         body: Center(
           child: Text('Settings Page'),
         ),
+        drawer: DrawerMenu(),
       ),
     );
   }

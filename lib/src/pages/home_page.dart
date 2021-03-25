@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:userprefs/src/pages/settings_page.dart';
+import 'package:userprefs/src/widgets/drawer_menu.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
@@ -31,41 +31,7 @@ class HomePage extends StatelessWidget {
             Divider(),
           ],
         ),
-        drawer: _createMenu(context),
-      ),
-    );
-  }
-
-  Drawer _createMenu(BuildContext c) {
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          DrawerHeader(
-            child: Container(),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/img/menu-img.jpg'),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.pages, color: Colors.blue),
-            title: Text('Pages'),
-            onTap: () {
-              Navigator.pop(c);
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.settings, color: Colors.blue),
-            title: Text('Settings'),
-            onTap: () {
-              Navigator.pop(c);
-              Navigator.pushNamed(c, SettingsPage.routeName);
-            },
-          )
-        ],
+        drawer: DrawerMenu(),
       ),
     );
   }
