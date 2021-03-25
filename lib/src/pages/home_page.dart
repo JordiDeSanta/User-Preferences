@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:userprefs/src/pages/settings_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
@@ -15,19 +16,33 @@ class HomePage extends StatelessWidget {
 
     return Container(
       child: Scaffold(
-          appBar: AppBar(
-            title: Text('User Prefenences'),
+        appBar: AppBar(
+          title: Text('User Prefenences'),
+        ),
+        body: Column(
+          children: [
+            Text('Secondary Color:'),
+            Divider(),
+            Text('Genre:'),
+            Divider(),
+            Text('Username:'),
+            Divider(),
+          ],
+        ),
+        drawer: _createMenu(),
+      ),
+    );
+  }
+
+  Drawer _createMenu() {
+    return Drawer(
+      child: ListView(
+        children: [
+          DrawerHeader(
+            child: Text('My Menu'),
           ),
-          body: Column(
-            children: [
-              Text('Secondary Color:'),
-              Divider(),
-              Text('Genre:'),
-              Divider(),
-              Text('Username:'),
-              Divider(),
-            ],
-          )),
+        ],
+      ),
     );
   }
 }
