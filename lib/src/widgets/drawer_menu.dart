@@ -21,22 +21,24 @@ class DrawerMenu extends StatelessWidget {
               ),
             ),
           ),
-          ListTile(
-            leading: Icon(Icons.pages, color: Colors.blue),
-            title: Text('Home'),
-            onTap: () {
-              Navigator.pushReplacementNamed(context, HomePage.routeName);
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.settings, color: Colors.blue),
-            title: Text('Settings'),
-            onTap: () {
-              Navigator.pushReplacementNamed(context, SettingsPage.routeName);
-            },
-          )
+          _createTile(context, HomePage.routeName, Icons.home, 'Home'),
+          _createTile(
+              context, HomePage.routeName, Icons.party_mode, 'Party Mode'),
+          _createTile(context, HomePage.routeName, Icons.people, 'People'),
+          _createTile(
+              context, SettingsPage.routeName, Icons.settings, 'Settings'),
         ],
       ),
+    );
+  }
+
+  Widget _createTile(BuildContext c, String route, IconData icon, String name) {
+    return ListTile(
+      leading: Icon(icon, color: Colors.blue),
+      title: Text(name),
+      onTap: () {
+        Navigator.pushReplacementNamed(c, route);
+      },
     );
   }
 }
