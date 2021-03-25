@@ -10,6 +10,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
+      statusBarColor: Colors.transparent,
+      statusBarBrightness: Brightness.dark,
       systemNavigationBarColor: Colors.white,
       systemNavigationBarDividerColor: Colors.white,
     ));
@@ -29,18 +31,39 @@ class HomePage extends StatelessWidget {
             Divider(),
           ],
         ),
-        drawer: _createMenu(),
+        drawer: _createMenu(context),
       ),
     );
   }
 
-  Drawer _createMenu() {
+  Drawer _createMenu(BuildContext c) {
     return Drawer(
       child: ListView(
+        padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
-            child: Text('My Menu'),
+            child: Container(),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/img/menu-img.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
+          ListTile(
+            leading: Icon(Icons.pages, color: Colors.blue),
+            title: Text('Pages'),
+            onTap: () {
+              Navigator.pushNamed(c, SettingsPage.routeName);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.settings, color: Colors.blue),
+            title: Text('Settings'),
+            onTap: () {
+              Navigator.pushNamed(c, SettingsPage.routeName);
+            },
+          )
         ],
       ),
     );
