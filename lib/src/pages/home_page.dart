@@ -54,13 +54,14 @@ class HomePage extends StatelessWidget {
             leading: Icon(Icons.pages, color: Colors.blue),
             title: Text('Pages'),
             onTap: () {
-              Navigator.pushNamed(c, SettingsPage.routeName);
+              Navigator.pop(c);
             },
           ),
           ListTile(
             leading: Icon(Icons.settings, color: Colors.blue),
             title: Text('Settings'),
             onTap: () {
+              Navigator.pop(c);
               Navigator.pushNamed(c, SettingsPage.routeName);
             },
           )
