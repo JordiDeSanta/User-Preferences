@@ -24,7 +24,7 @@ class UserPreferences {
   }
 
   get secondaryColor {
-    return _prefs.getBool('secondaryColor');
+    return _prefs.getBool('secondaryColor') ?? false;
   }
 
   set secondaryColor(bool value) {
@@ -32,7 +32,7 @@ class UserPreferences {
   }
 
   get name {
-    return _prefs.getString('name');
+    return _prefs.getString('name') ?? 'Name';
   }
 
   set name(String value) {
