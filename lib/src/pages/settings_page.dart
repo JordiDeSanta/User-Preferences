@@ -21,7 +21,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   bool _secondaryColor;
   int _genre;
-  String _name = 'Jordi';
+  String _name;
 
   TextEditingController _textController;
 
@@ -35,7 +35,7 @@ class _SettingsPageState extends State<SettingsPage> {
     _secondaryColor = prefs.secondaryColor;
 
     _textController = new TextEditingController(
-      text: _name,
+      text: prefs.name,
     );
   }
 
@@ -58,6 +58,7 @@ class _SettingsPageState extends State<SettingsPage> {
       child: Scaffold(
         appBar: AppBar(
           title: Text('Settings'),
+          backgroundColor: (prefs.secondaryColor) ? Colors.red : Colors.blue,
         ),
         drawer: DrawerMenu(),
         body: ListView(

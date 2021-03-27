@@ -21,6 +21,7 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text('User Prefenences'),
+          backgroundColor: (prefs.secondaryColor) ? Colors.red : Colors.blue,
         ),
         body: Column(
           children: [
