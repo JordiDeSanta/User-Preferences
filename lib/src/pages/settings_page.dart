@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:userprefs/src/widgets/drawer_menu.dart';
 
@@ -24,12 +25,29 @@ class _SettingsPageState extends State<SettingsPage> {
   TextEditingController _textController;
 
   @override
-  void initState() {
+  void initState() async {
     super.initState();
+    loadPref();
 
     _textController = new TextEditingController(
       text: _name,
     );
+  }
+
+  loadPref() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    _genre = prefs.getInt('genre');
+    setState(() {});
+  }
+
+  _setSelectedRadio(int value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.setInt('genre', value);
+
+    _genre = value;
+    setState(() {});
   }
 
   @override
@@ -58,23 +76,15 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             RadioListTile(
               title: Text('Male'),
-              value: _genre,
-              groupValue: 1,
-              onChanged: (b) {
-                setState(() {
-                  _genre = b;
-                });
-              },
+              value: 1,
+              groupValue: _genre,
+              onChanged: _setSelectedRadio,
             ),
             RadioListTile(
               title: Text('Female'),
-              value: _genre,
-              groupValue: 2,
-              onChanged: (b) {
-                setState(() {
-                  _genre = b;
-                });
-              },
+              value: 2,
+              groupValue: _genre,
+              onChanged: _setSelectedRadio,
             ),
             Divider(),
             Container(
