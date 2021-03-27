@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:userprefs/src/user_prefs/user_preferences.dart';
 
 import 'package:userprefs/src/widgets/drawer_menu.dart';
 
@@ -18,16 +19,20 @@ class _SettingsPageState extends State<SettingsPage> {
     fontSize: 40,
   );
 
-  bool _secondaryColor = false;
-  int _genre = 1;
+  bool _secondaryColor;
+  int _genre;
   String _name = 'Jordi';
 
   TextEditingController _textController;
 
+  UserPreferences prefs = new UserPreferences();
+
   @override
   void initState() {
     super.initState();
-    loadPref();
+
+    _genre = prefs.genre;
+    _secondaryColor = prefs.secondaryColor;
 
     _textController = new TextEditingController(
       text: _name,
@@ -41,11 +46,8 @@ class _SettingsPageState extends State<SettingsPage> {
     setState(() {});
   }
 
-  _setSelectedRadio(int value) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    prefs.setInt('genre', value);
-
+  _setSelectedRadio(int value) {
+    prefs.genre = value;
     _genre = value;
     setState(() {});
   }
@@ -69,9 +71,9 @@ class _SettingsPageState extends State<SettingsPage> {
               title: Text('Secondary Color'),
               value: _secondaryColor,
               onChanged: (b) {
-                setState(() {
-                  _secondaryColor = b;
-                });
+                _secondaryColor = b;
+                prefs.secondaryColor = b;
+                setState(() {});
               },
             ),
             RadioListTile(
@@ -95,7 +97,11 @@ class _SettingsPageState extends State<SettingsPage> {
                   labelText: 'Name',
                   helperText: 'Name of the person using the phone',
                 ),
-                onChanged: (t) {},
+                onChanged: (t) {
+                  prefs.name = t;
+                  _name = t;
+                  setState(() {});
+                },
               ),
             )
           ],

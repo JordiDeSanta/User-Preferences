@@ -24,11 +24,11 @@ class HomePage extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Text('Secondary Color:'),
+            Text('Secondary Color: ${prefs.secondaryColor}'),
             Divider(),
             Text('Genre: ${prefs.genre}'),
             Divider(),
-            Text('Username:'),
+            Text('Username: ${prefs.name}'),
             Divider(),
           ],
         ),
