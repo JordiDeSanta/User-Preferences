@@ -25,7 +25,7 @@ class _SettingsPageState extends State<SettingsPage> {
   TextEditingController _textController;
 
   @override
-  void initState() async {
+  void initState() {
     super.initState();
     loadPref();
 

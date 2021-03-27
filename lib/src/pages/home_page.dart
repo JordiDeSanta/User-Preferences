@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:userprefs/src/widgets/drawer_menu.dart';
 
 class HomePage extends StatelessWidget {
@@ -34,5 +35,22 @@ class HomePage extends StatelessWidget {
         drawer: DrawerMenu(),
       ),
     );
+  }
+
+  Future<String> getGenre() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    int genreValue = prefs.getInt('genre');
+
+    switch (genreValue) {
+      case 1:
+        return 'Male';
+        break;
+      case 2:
+        return 'Female';
+        break;
+      default:
+        return 'Male';
+    }
   }
 }
