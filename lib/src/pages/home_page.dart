@@ -10,6 +10,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    prefs.lastPage = routeName;
+
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
       statusBarColor: Colors.transparent,
       statusBarBrightness: Brightness.dark,

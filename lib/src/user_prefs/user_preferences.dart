@@ -1,4 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:userprefs/src/pages/home_page.dart';
 
 class UserPreferences {
   static final UserPreferences _instance = new UserPreferences._internal();
@@ -32,10 +33,18 @@ class UserPreferences {
   }
 
   get name {
-    return _prefs.getString('name') ?? 'Name';
+    return _prefs.getString('name') ?? '';
   }
 
   set name(String value) {
     _prefs.setString('name', value);
+  }
+
+  get lastPage {
+    return _prefs.getString('lastPage') ?? HomePage.routeName;
+  }
+
+  set lastPage(String value) {
+    _prefs.setString('lastPage', value);
   }
 }
